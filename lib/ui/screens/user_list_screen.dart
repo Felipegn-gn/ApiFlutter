@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/provider/user_provider.dart';
+import 'package:flutter_application_1/ui/screens/user_form_screen.dart';
 import 'package:flutter_application_1/ui/widgets/user_card.dart';
 import 'package:provider/provider.dart';
 
@@ -35,12 +36,14 @@ class UserListScreen extends StatelessWidget {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showForm(context),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
 
   void _showForm(BuildContext context) {
-    // Aqui chamaria a tela de formulário
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const UserFormScreen()));
   }
 }

@@ -29,6 +29,17 @@ class UserProvider with ChangeNotifier {
       await fetchUsers(); // Recarrega a lista após criar
     } catch (e) {
       debugPrint("Erro ao adicionar: $e");
+      rethrow;
+    }
+  }
+
+  Future<void> update(User user) async {
+    try {
+      await _service.updateUser(user);
+      await fetchUsers(); // Recarrega a lista após editar
+    } catch (e) {
+      debugPrint("Erro ao atualizar: $e");
+      rethrow;
     }
   }
 
@@ -38,6 +49,7 @@ class UserProvider with ChangeNotifier {
       await fetchUsers(); // Recarrega a lista após deletar
     } catch (e) {
       debugPrint("Erro ao remover: $e");
+      rethrow;
     }
   }
 }

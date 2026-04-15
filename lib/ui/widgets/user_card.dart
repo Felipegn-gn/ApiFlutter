@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/provider/user_provider.dart';
+import 'package:flutter_application_1/ui/screens/user_form_screen.dart';
 import 'package:provider/provider.dart';
 import '../../models/user.dart';
 
@@ -35,13 +36,28 @@ class UserCard extends StatelessWidget {
               Text('Idade: ${user.idade}'),
             ],
           ),
-          trailing: IconButton(
-            icon: const Icon(Icons.delete_sweep, color: Colors.redAccent),
-            onPressed: () => _confirmDelete(context),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.edit, color: Colors.green),
+                onPressed: () => _navigateToEdit(context),
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete_sweep, color: Colors.redAccent),
+                onPressed: () => _confirmDelete(context),
+              ),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  void _navigateToEdit(BuildContext context) {
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => UserFormScreen(user: user)));
   }
 
   void _confirmDelete(BuildContext context) {
